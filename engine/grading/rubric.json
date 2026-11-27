@@ -1,0 +1,351 @@
+{
+  "assessment_id": "tram-cuoi-cung-gk",
+  "rubric_version": "2.0",
+  "levels": {
+    "0": {
+      "file": "level0_boot.py",
+      "title": "Đánh thức robot",
+      "max": 5
+    },
+    "1": {
+      "file": "level1_gate.py",
+      "title": "Cổng cách ly",
+      "max": 20
+    },
+    "2": {
+      "file": "level2_cargo.py",
+      "title": "Chuyến hàng cuối",
+      "max": 30
+    },
+    "3": {
+      "file": "level3_team.py",
+      "title": "Đội cứu hộ cuối cùng",
+      "max": 45
+    }
+  },
+  "criteria": [
+    {
+      "id": "L0-WAKE",
+      "level": 0,
+      "case": "L0-main",
+      "points": 3,
+      "check": "goal",
+      "text": "BIP được kích hoạt và ở điểm tập kết",
+      "hint": "Gọi ctx.activate rồi ctx.move_to tới điểm tập kết.",
+      "goal": "wake"
+    },
+    {
+      "id": "L0-SAY",
+      "level": 0,
+      "case": "L0-main",
+      "points": 2,
+      "check": "goal",
+      "text": "BIP gửi được thông điệp hợp lệ",
+      "hint": "BIP phải hoạt động trước khi ctx.say; câu 1–80 ký tự.",
+      "goal": "say"
+    },
+    {
+      "id": "L1-ZONE-A",
+      "level": 1,
+      "case": "L1-main",
+      "points": 4,
+      "check": "goal",
+      "text": "Khu A được mở và tiếp cận",
+      "hint": "Mở cổng của khu rồi đưa robot tới đèn hiệu (kind 'beacon').",
+      "goal": "zone_A"
+    },
+    {
+      "id": "L1-ZONE-B",
+      "level": 1,
+      "case": "L1-main",
+      "points": 5,
+      "check": "goal",
+      "text": "Khu B được mở và tiếp cận",
+      "hint": "Mở cổng của khu rồi đưa robot tới đèn hiệu (kind 'beacon').",
+      "goal": "zone_B"
+    },
+    {
+      "id": "L1-ZONE-C",
+      "level": 1,
+      "case": "L1-main",
+      "points": 5,
+      "check": "goal",
+      "text": "Khu C được mở và tiếp cận",
+      "hint": "Mở cổng của khu rồi đưa robot tới đèn hiệu (kind 'beacon').",
+      "goal": "zone_C"
+    },
+    {
+      "id": "L1-CASE-CARD",
+      "level": 1,
+      "case": "L1-card",
+      "points": 2,
+      "check": "all_goals",
+      "text": "Xử lý thiếu thẻ: vẫn tiếp cận được khu",
+      "hint": "Đọc result.reason; robot khác có thể có thẻ phù hợp."
+    },
+    {
+      "id": "L1-CASE-BATT",
+      "level": 1,
+      "case": "L1-battery",
+      "points": 2,
+      "check": "all_goals",
+      "text": "Xử lý pin yếu: sạc rồi hoàn thành",
+      "hint": "So sánh ctx.route_cost với pin; sạc ở địa điểm is_charger."
+    },
+    {
+      "id": "L1-CASE-BROKEN",
+      "level": 1,
+      "case": "L1-broken",
+      "points": 2,
+      "check": "all_goals",
+      "text": "Xử lý cổng hỏng/cổng mở sẵn mà không dừng giữa chừng",
+      "hint": "Cổng hỏng trả gate_broken; bỏ qua và làm khu khác."
+    },
+    {
+      "id": "L2-PKG-1",
+      "level": 2,
+      "case": "L2-main",
+      "points": 3,
+      "check": "goal",
+      "text": "Kiện 1 được giao đúng nơi",
+      "hint": "Chỉ tính khi unload tại đúng destination.",
+      "goal": "pkg1"
+    },
+    {
+      "id": "L2-PKG-2",
+      "level": 2,
+      "case": "L2-main",
+      "points": 3,
+      "check": "goal",
+      "text": "Kiện 2 được giao đúng nơi",
+      "hint": "Chỉ tính khi unload tại đúng destination.",
+      "goal": "pkg2"
+    },
+    {
+      "id": "L2-PKG-3",
+      "level": 2,
+      "case": "L2-main",
+      "points": 3,
+      "check": "goal",
+      "text": "Kiện 3 được giao đúng nơi",
+      "hint": "Chỉ tính khi unload tại đúng destination.",
+      "goal": "pkg3"
+    },
+    {
+      "id": "L2-PKG-4",
+      "level": 2,
+      "case": "L2-main",
+      "points": 3,
+      "check": "goal",
+      "text": "Kiện 4 được giao đúng nơi",
+      "hint": "Chỉ tính khi unload tại đúng destination.",
+      "goal": "pkg4"
+    },
+    {
+      "id": "L2-PKG-5",
+      "level": 2,
+      "case": "L2-main",
+      "points": 3,
+      "check": "goal",
+      "text": "Kiện 5 được giao đúng nơi",
+      "hint": "Chỉ tính khi unload tại đúng destination.",
+      "goal": "pkg5"
+    },
+    {
+      "id": "L2-PKG-6",
+      "level": 2,
+      "case": "L2-main",
+      "points": 3,
+      "check": "goal",
+      "text": "Kiện 6 được giao đúng nơi",
+      "hint": "Chỉ tính khi unload tại đúng destination.",
+      "goal": "pkg6"
+    },
+    {
+      "id": "L2-CASE-TRIPS",
+      "level": 2,
+      "case": "L2-trips",
+      "points": 3,
+      "check": "all_goals",
+      "text": "Xử lý tổng khối lượng vượt sức chứa (nhiều chuyến)",
+      "hint": "Khi over_capacity hãy đi giao bớt rồi quay lại."
+    },
+    {
+      "id": "L2-CASE-STATE",
+      "level": 2,
+      "case": "L2-state",
+      "points": 2,
+      "check": "all_goals",
+      "text": "Xử lý kiện đã giao sẵn và kiện nằm sai chỗ",
+      "hint": "Đọc status và location của từng kiện trước khi nạp."
+    },
+    {
+      "id": "L2-CASE-SHUFFLE",
+      "level": 2,
+      "case": "L2-shuffle",
+      "points": 3,
+      "check": "all_goals",
+      "text": "Giao đúng khi id/thứ tự/nơi nhận thay đổi",
+      "hint": "Không viết cứng id; đọc ctx.packages()."
+    },
+    {
+      "id": "L2-OOP-USE",
+      "level": 2,
+      "case": "L2-main",
+      "points": 2,
+      "check": "planner_use",
+      "text": "Object lớp con PlannerBase thực sự giao hàng qua use_planner",
+      "hint": "Tạo lớp con PlannerBase, gọi super().__init__(name) và ctx.use_planner(obj)."
+    },
+    {
+      "id": "L2-OOP-STATE",
+      "level": 2,
+      "case": "L2-main",
+      "points": 2,
+      "check": "planner_state",
+      "text": "report() của planner khớp các kiện thực sự giao",
+      "hint": "Lưu id kiện khi unload thành công (result.ok và data['delivered'])."
+    },
+    {
+      "id": "L3-TASK-1",
+      "level": 3,
+      "case": "L3-main",
+      "points": 4,
+      "check": "goal",
+      "text": "Nhiệm vụ job1 hoàn thành",
+      "hint": "Sửa: repair tại site. Cứu: rescue rồi move_to tới safe_zone.",
+      "goal": "job1"
+    },
+    {
+      "id": "L3-TASK-2",
+      "level": 3,
+      "case": "L3-main",
+      "points": 4,
+      "check": "goal",
+      "text": "Nhiệm vụ job2 hoàn thành",
+      "hint": "Sửa: repair tại site. Cứu: rescue rồi move_to tới safe_zone.",
+      "goal": "job2"
+    },
+    {
+      "id": "L3-TASK-3",
+      "level": 3,
+      "case": "L3-main",
+      "points": 4,
+      "check": "goal",
+      "text": "Nhiệm vụ job3 hoàn thành",
+      "hint": "Sửa: repair tại site. Cứu: rescue rồi move_to tới safe_zone.",
+      "goal": "job3"
+    },
+    {
+      "id": "L3-TASK-4",
+      "level": 3,
+      "case": "L3-main",
+      "points": 4,
+      "check": "goal",
+      "text": "Nhiệm vụ job4 hoàn thành",
+      "hint": "Sửa: repair tại site. Cứu: rescue rồi move_to tới safe_zone.",
+      "goal": "job4"
+    },
+    {
+      "id": "L3-TASK-5",
+      "level": 3,
+      "case": "L3-main",
+      "points": 4,
+      "check": "goal",
+      "text": "Nhiệm vụ job5 hoàn thành",
+      "hint": "Sửa: repair tại site. Cứu: rescue rồi move_to tới safe_zone.",
+      "goal": "job5"
+    },
+    {
+      "id": "L3-TASK-6",
+      "level": 3,
+      "case": "L3-main",
+      "points": 4,
+      "check": "goal",
+      "text": "Nhiệm vụ job6 hoàn thành",
+      "hint": "Sửa: repair tại site. Cứu: rescue rồi move_to tới safe_zone.",
+      "goal": "job6"
+    },
+    {
+      "id": "L3-OOP-INIT",
+      "level": 3,
+      "case": "L3-oop",
+      "points": 3,
+      "check": "oop_init",
+      "text": "Lớp con RobotBase được khởi tạo (super) và đăng ký",
+      "hint": "Gọi super().__init__(slot_id) rồi ctx.register_robot(obj)."
+    },
+    {
+      "id": "L3-OOP-PROFILE",
+      "level": 3,
+      "case": "L3-oop",
+      "points": 2,
+      "check": "oop_profile",
+      "text": "Robot đã đăng ký hành động thành công bằng id của slot",
+      "hint": "Dùng self.id trong các lời gọi công cụ."
+    },
+    {
+      "id": "L3-OOP-ACT",
+      "level": 3,
+      "case": "L3-oop",
+      "points": 3,
+      "check": "oop_act",
+      "text": "act() override tạo hành động sửa/cứu thành công qua dispatch",
+      "hint": "Gọi ctx.dispatch(robot, task_id); trong act dùng ctx.repair/ctx.rescue."
+    },
+    {
+      "id": "L3-OOP-ACT2",
+      "level": 3,
+      "case": "L3-oop",
+      "points": 2,
+      "check": "oop_act2",
+      "text": "Hai lớp con khác nhau override act cho hai chuyên môn",
+      "hint": "Viết một lớp sửa chữa và một lớp cứu hộ."
+    },
+    {
+      "id": "L3-OOP-POLY",
+      "level": 3,
+      "case": "L3-oop",
+      "points": 3,
+      "check": "oop_poly",
+      "text": "Nhiều object được gọi qua cùng giao diện dispatch",
+      "hint": "Dispatch ít nhất hai object robot của bạn."
+    },
+    {
+      "id": "L3-OOP-SEPARATE",
+      "level": 3,
+      "case": "L3-oop",
+      "points": 3,
+      "check": "oop_separate",
+      "text": "Mỗi object giữ trạng thái và hành động riêng",
+      "hint": "Mỗi robot dùng self.id của chính nó."
+    },
+    {
+      "id": "L3-CASE-BATT",
+      "level": 3,
+      "case": "L3-battery",
+      "points": 2,
+      "check": "all_goals",
+      "text": "Xử lý thiếu pin: sạc rồi hoàn thành",
+      "hint": "Kiểm tra pin trước khi đi; sạc ở base."
+    },
+    {
+      "id": "L3-CASE-DONE",
+      "level": 3,
+      "case": "L3-done",
+      "points": 2,
+      "check": "all_goals",
+      "text": "Bỏ qua việc đã xong, chờ việc bị chặn",
+      "hint": "Xem status và requires của task."
+    },
+    {
+      "id": "L3-CASE-QUOTA",
+      "level": 3,
+      "case": "L3-quota",
+      "points": 1,
+      "check": "all_goals",
+      "text": "Hoàn thành khi quota slot giới hạn",
+      "hint": "Đọc ctx.slots(); một robot có thể làm nhiều việc."
+    }
+  ]
+}

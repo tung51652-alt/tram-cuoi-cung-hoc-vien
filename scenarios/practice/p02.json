@@ -1,0 +1,98 @@
+{
+  "id": "p02",
+  "level": "practice",
+  "file": "p02_observe.py",
+  "title": "Đọc trạng thái",
+  "description": "Cho BIP nói một câu có số pin hiện tại của BIP và tên địa điểm có trạm sạc.",
+  "locations": [
+    {
+      "name": "dock_boot",
+      "kind": "start",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 140,
+      "y": 320
+    },
+    {
+      "name": "corridor",
+      "kind": "corridor",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 430,
+      "y": 320
+    },
+    {
+      "name": "charge_bay",
+      "kind": "charger",
+      "zone": null,
+      "is_charger": true,
+      "charges_left": null,
+      "x": 430,
+      "y": 120
+    },
+    {
+      "name": "rally_point",
+      "kind": "rally",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 720,
+      "y": 320
+    }
+  ],
+  "edges": [
+    [
+      "dock_boot",
+      "corridor",
+      3
+    ],
+    [
+      "corridor",
+      "rally_point",
+      3
+    ],
+    [
+      "corridor",
+      "charge_bay",
+      2
+    ]
+  ],
+  "robots": [
+    {
+      "id": "BIP",
+      "name": "BIP",
+      "battery": 17,
+      "max_battery": 20,
+      "location": "dock_boot",
+      "cards": [
+        1
+      ],
+      "active": true
+    }
+  ],
+  "goals": [
+    {
+      "id": "report",
+      "type": "said_contains",
+      "robot": "BIP",
+      "values": [
+        "17",
+        "charge_bay"
+      ],
+      "text": "Câu nói chứa số pin và tên trạm sạc"
+    }
+  ],
+  "checks": [
+    {
+      "type": "all_goals",
+      "text": "Hoàn thành mọi mục tiêu của bài"
+    }
+  ],
+  "hints": [
+    "ctx.robot(\"BIP\") trả về dict; thử print nó.",
+    "Địa điểm có is_charger True là trạm sạc.",
+    "Ghép chuỗi bằng f-string: f\"Pin {pin}, trạm {ten}\"."
+  ]
+}

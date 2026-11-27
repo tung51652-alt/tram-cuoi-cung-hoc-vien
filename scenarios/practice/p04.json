@@ -1,0 +1,101 @@
+{
+  "id": "p04",
+  "level": "practice",
+  "file": "p04_refuse.py",
+  "title": "Bị từ chối thì làm gì?",
+  "description": "Cổng cần thẻ cấp 2. Thử mở bằng BIP, đọc lý do, rồi dùng robot khác. BIP cũng đang yếu pin.",
+  "locations": [
+    {
+      "name": "hub",
+      "kind": "start",
+      "zone": null,
+      "is_charger": true,
+      "charges_left": null,
+      "x": 200,
+      "y": 320
+    },
+    {
+      "name": "door_X",
+      "kind": "gate",
+      "zone": "X",
+      "is_charger": false,
+      "charges_left": null,
+      "x": 480,
+      "y": 320
+    },
+    {
+      "name": "beacon_X",
+      "kind": "beacon",
+      "zone": "X",
+      "is_charger": false,
+      "charges_left": null,
+      "x": 720,
+      "y": 320
+    }
+  ],
+  "edges": [
+    [
+      "hub",
+      "door_X",
+      3
+    ],
+    [
+      "door_X",
+      "beacon_X",
+      3,
+      "gate_X"
+    ]
+  ],
+  "gates": [
+    {
+      "id": "gate_X",
+      "location": "door_X",
+      "zone": "X",
+      "required_card": 2
+    }
+  ],
+  "robots": [
+    {
+      "id": "BIP",
+      "name": "BIP",
+      "battery": 4,
+      "max_battery": 20,
+      "location": "hub",
+      "cards": [
+        1
+      ],
+      "active": true
+    },
+    {
+      "id": "KEP",
+      "name": "KEP",
+      "battery": 20,
+      "max_battery": 20,
+      "location": "hub",
+      "cards": [
+        1,
+        2
+      ]
+    }
+  ],
+  "goals": [
+    {
+      "id": "zone_X",
+      "type": "zone",
+      "beacon": "beacon_X",
+      "points": 0,
+      "text": "Mở đường và đưa robot tới đèn hiệu khu X"
+    }
+  ],
+  "checks": [
+    {
+      "type": "all_goals",
+      "text": "Hoàn thành mọi mục tiêu của bài"
+    }
+  ],
+  "hints": [
+    "result = ctx.open_gate(...); print(result.reason, result.message).",
+    "reason \"missing_card\" nghĩa là robot không có thẻ; xem r[\"cards\"] trong ctx.robots().",
+    "Pin thấp thì ctx.go_charge(robot_id)."
+  ]
+}

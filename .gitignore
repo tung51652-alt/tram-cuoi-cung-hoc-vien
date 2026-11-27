@@ -1,0 +1,20 @@
+# Môi trường Python và bộ nhớ đệm
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Dữ liệu sinh ra trên từng máy và bản đóng gói
+/local/
+/dist/
+
+# Cấu hình riêng và file tạm
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+*.log

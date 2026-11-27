@@ -1,0 +1,95 @@
+{
+  "id": "p07",
+  "level": "practice",
+  "file": "p07_fix_error.py",
+  "title": "Sửa lỗi",
+  "description": "File có sẵn hai lỗi. Chạy, đọc tên file/dòng/gợi ý, sửa rồi chạy lại cho tới khi BIP tới điểm tập kết.",
+  "locations": [
+    {
+      "name": "dock_boot",
+      "kind": "start",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 140,
+      "y": 320
+    },
+    {
+      "name": "corridor",
+      "kind": "corridor",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 430,
+      "y": 320
+    },
+    {
+      "name": "charge_bay",
+      "kind": "charger",
+      "zone": null,
+      "is_charger": true,
+      "charges_left": null,
+      "x": 430,
+      "y": 120
+    },
+    {
+      "name": "rally_point",
+      "kind": "rally",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 720,
+      "y": 320
+    }
+  ],
+  "edges": [
+    [
+      "dock_boot",
+      "corridor",
+      3
+    ],
+    [
+      "corridor",
+      "rally_point",
+      3
+    ],
+    [
+      "corridor",
+      "charge_bay",
+      2
+    ]
+  ],
+  "robots": [
+    {
+      "id": "BIP",
+      "name": "BIP",
+      "battery": 20,
+      "max_battery": 20,
+      "location": "dock_boot",
+      "cards": [
+        1
+      ],
+      "active": true
+    }
+  ],
+  "goals": [
+    {
+      "id": "rally",
+      "type": "robot_at",
+      "robot": "BIP",
+      "location": "rally_point",
+      "text": "BIP tới rally_point"
+    }
+  ],
+  "checks": [
+    {
+      "type": "all_goals",
+      "text": "Hoàn thành mọi mục tiêu của bài"
+    }
+  ],
+  "hints": [
+    "Đọc kỹ thứ tự tham số: move_to(robot_id, location).",
+    "Hàm helper phải return giá trị.",
+    "Mỗi lần chạy lại, thế giới được reset về ban đầu."
+  ]
+}

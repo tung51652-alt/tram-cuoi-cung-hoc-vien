@@ -1,0 +1,124 @@
+{
+  "id": "p05",
+  "level": "practice",
+  "file": "p05_loop.py",
+  "title": "Vòng lặp giao hàng",
+  "description": "Giao 3 kiện nhỏ. Bạn có thể đi từng kiện hoặc gom kiện cùng nơi nhận: cả hai đều đạt.",
+  "locations": [
+    {
+      "name": "depot",
+      "kind": "start",
+      "zone": null,
+      "is_charger": true,
+      "charges_left": null,
+      "x": 160,
+      "y": 330
+    },
+    {
+      "name": "med_bay",
+      "kind": "dock",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 600,
+      "y": 140
+    },
+    {
+      "name": "lab",
+      "kind": "dock",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 600,
+      "y": 520
+    }
+  ],
+  "edges": [
+    [
+      "depot",
+      "med_bay",
+      3
+    ],
+    [
+      "depot",
+      "lab",
+      3
+    ]
+  ],
+  "robots": [
+    {
+      "id": "BIP",
+      "name": "BIP",
+      "battery": 40,
+      "max_battery": 40,
+      "location": "depot",
+      "cards": [
+        1
+      ],
+      "capacity": 10
+    }
+  ],
+  "packages": [
+    {
+      "id": "a",
+      "name": "Hộp thuốc",
+      "weight": 2,
+      "category": "medical",
+      "destination": "med_bay",
+      "location": "depot",
+      "status": "waiting"
+    },
+    {
+      "id": "b",
+      "name": "Chai nước",
+      "weight": 3,
+      "category": "life",
+      "destination": "lab",
+      "location": "depot",
+      "status": "waiting"
+    },
+    {
+      "id": "c",
+      "name": "Gạc",
+      "weight": 1,
+      "category": "medical",
+      "destination": "med_bay",
+      "location": "depot",
+      "status": "waiting"
+    }
+  ],
+  "goals": [
+    {
+      "id": "a",
+      "type": "delivered",
+      "package": "a",
+      "points": 0,
+      "text": "Giao kiện 'Hộp thuốc' tới đúng nơi nhận"
+    },
+    {
+      "id": "b",
+      "type": "delivered",
+      "package": "b",
+      "points": 0,
+      "text": "Giao kiện 'Chai nước' tới đúng nơi nhận"
+    },
+    {
+      "id": "c",
+      "type": "delivered",
+      "package": "c",
+      "points": 0,
+      "text": "Giao kiện 'Gạc' tới đúng nơi nhận"
+    }
+  ],
+  "checks": [
+    {
+      "type": "all_goals",
+      "text": "Hoàn thành mọi mục tiêu của bài"
+    }
+  ],
+  "hints": [
+    "for p in ctx.packages(): ...",
+    "Mỗi kiện: move_to tới p[\"location\"], load, move_to tới p[\"destination\"], unload.",
+    "Muốn gom: load nhiều kiện cùng destination rồi đi một lần."
+  ]
+}

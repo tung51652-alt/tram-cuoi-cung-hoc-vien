@@ -1,0 +1,135 @@
+{
+  "id": "p06",
+  "level": "practice",
+  "file": "p06_oop.py",
+  "title": "Robot của riêng bạn",
+  "description": "Viết hai lớp con RobotBase (sửa chữa, cứu hộ), đăng ký và dispatch mỗi robot một việc.",
+  "locations": [
+    {
+      "name": "base",
+      "kind": "start",
+      "zone": null,
+      "is_charger": true,
+      "charges_left": null,
+      "x": 430,
+      "y": 330
+    },
+    {
+      "name": "safe_zone",
+      "kind": "safe_zone",
+      "zone": null,
+      "is_charger": true,
+      "charges_left": null,
+      "x": 760,
+      "y": 330
+    },
+    {
+      "name": "site_a",
+      "kind": "site",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 200,
+      "y": 140
+    },
+    {
+      "name": "room_a",
+      "kind": "site",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 600,
+      "y": 140
+    }
+  ],
+  "edges": [
+    [
+      "base",
+      "site_a",
+      3
+    ],
+    [
+      "base",
+      "room_a",
+      3
+    ],
+    [
+      "room_a",
+      "safe_zone",
+      3
+    ],
+    [
+      "base",
+      "safe_zone",
+      3
+    ]
+  ],
+  "robots": [],
+  "slots": [
+    {
+      "slot_id": "R1",
+      "specialty": "repair",
+      "max_battery": 30,
+      "start": "base",
+      "name": "Thợ sửa R1"
+    },
+    {
+      "slot_id": "S1",
+      "specialty": "rescue",
+      "max_battery": 30,
+      "start": "base",
+      "name": "Cứu hộ S1"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "t1",
+      "kind": "repair",
+      "location": "site_a",
+      "requires": null,
+      "status": "open"
+    },
+    {
+      "id": "t2",
+      "kind": "rescue",
+      "location": "room_a",
+      "requires": null,
+      "status": "open"
+    }
+  ],
+  "goals": [
+    {
+      "id": "job1",
+      "type": "task",
+      "task": "t1",
+      "points": 0,
+      "text": "Sửa thiết bị (job1)"
+    },
+    {
+      "id": "job2",
+      "type": "task",
+      "task": "t2",
+      "points": 0,
+      "text": "Đưa người về vùng an toàn (job2)"
+    }
+  ],
+  "checks": [
+    {
+      "type": "all_goals",
+      "text": "Hoàn thành mọi mục tiêu của bài"
+    },
+    {
+      "type": "oop_poly",
+      "text": "Hai object được gọi qua ctx.dispatch"
+    },
+    {
+      "type": "oop_act2",
+      "text": "Hai lớp con override act cho hai chuyên môn"
+    }
+  ],
+  "hints": [
+    "class Fixer(RobotBase): def act(self, ctx, task): ...",
+    "Gọi super().__init__(slot_id) nếu bạn viết __init__.",
+    "robot = Fixer(\"R1\"); ctx.register_robot(robot); ctx.dispatch(robot, \"t1\")."
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "id": "p03",
+  "level": "practice",
+  "file": "p03_move.py",
+  "title": "Di chuyển",
+  "description": "Đưa BIP ghé trạm sạc rồi tới điểm tập kết.",
+  "locations": [
+    {
+      "name": "dock_boot",
+      "kind": "start",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 140,
+      "y": 320
+    },
+    {
+      "name": "corridor",
+      "kind": "corridor",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 430,
+      "y": 320
+    },
+    {
+      "name": "charge_bay",
+      "kind": "charger",
+      "zone": null,
+      "is_charger": true,
+      "charges_left": null,
+      "x": 430,
+      "y": 120
+    },
+    {
+      "name": "rally_point",
+      "kind": "rally",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 720,
+      "y": 320
+    }
+  ],
+  "edges": [
+    [
+      "dock_boot",
+      "corridor",
+      3
+    ],
+    [
+      "corridor",
+      "rally_point",
+      3
+    ],
+    [
+      "corridor",
+      "charge_bay",
+      2
+    ]
+  ],
+  "robots": [
+    {
+      "id": "BIP",
+      "name": "BIP",
+      "battery": 20,
+      "max_battery": 20,
+      "location": "dock_boot",
+      "cards": [
+        1
+      ],
+      "active": true
+    }
+  ],
+  "goals": [
+    {
+      "id": "bay",
+      "type": "visited",
+      "robot": "BIP",
+      "location": "charge_bay",
+      "text": "Đã ghé charge_bay"
+    },
+    {
+      "id": "rally",
+      "type": "robot_at",
+      "robot": "BIP",
+      "location": "rally_point",
+      "text": "Kết thúc ở rally_point"
+    }
+  ],
+  "checks": [
+    {
+      "type": "all_goals",
+      "text": "Hoàn thành mọi mục tiêu của bài"
+    }
+  ],
+  "hints": [
+    "ctx.move_to(robot_id, ten_dia_diem).",
+    "Engine tự tìm đường, bạn chỉ cần tên đích.",
+    "Đi charge_bay trước, rally_point sau."
+  ]
+}

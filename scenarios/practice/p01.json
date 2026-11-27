@@ -1,0 +1,101 @@
+{
+  "id": "p01",
+  "level": "practice",
+  "file": "p01_wake.py",
+  "title": "Đánh thức và chào",
+  "description": "BIP đang tắt. Kích hoạt BIP rồi cho BIP nói một câu chào.",
+  "locations": [
+    {
+      "name": "dock_boot",
+      "kind": "start",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 140,
+      "y": 320
+    },
+    {
+      "name": "corridor",
+      "kind": "corridor",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 430,
+      "y": 320
+    },
+    {
+      "name": "charge_bay",
+      "kind": "charger",
+      "zone": null,
+      "is_charger": true,
+      "charges_left": null,
+      "x": 430,
+      "y": 120
+    },
+    {
+      "name": "rally_point",
+      "kind": "rally",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 720,
+      "y": 320
+    }
+  ],
+  "edges": [
+    [
+      "dock_boot",
+      "corridor",
+      3
+    ],
+    [
+      "corridor",
+      "rally_point",
+      3
+    ],
+    [
+      "corridor",
+      "charge_bay",
+      2
+    ]
+  ],
+  "robots": [
+    {
+      "id": "BIP",
+      "name": "BIP",
+      "battery": 20,
+      "max_battery": 20,
+      "location": "dock_boot",
+      "cards": [
+        1
+      ],
+      "active": false
+    }
+  ],
+  "goals": [
+    {
+      "id": "awake",
+      "type": "robot_at",
+      "robot": "BIP",
+      "location": "dock_boot",
+      "text": "BIP đã thức"
+    },
+    {
+      "id": "hello",
+      "type": "said",
+      "robot": "BIP",
+      "text": "BIP nói một câu"
+    }
+  ],
+  "checks": [
+    {
+      "type": "all_goals",
+      "text": "Hoàn thành mọi mục tiêu của bài"
+    }
+  ],
+  "hints": [
+    "Dùng ctx.activate(\"BIP\").",
+    "Sau đó ctx.say(\"BIP\", \"...\").",
+    "Nói trước khi kích hoạt sẽ bị từ chối với reason \"inactive\"."
+  ]
+}

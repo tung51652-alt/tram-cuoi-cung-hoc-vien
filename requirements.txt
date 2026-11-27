@@ -1,0 +1,3 @@
+# Thư viện đồ họa cho game Python; kiểm chứng cài/chạy ở Phase 3 và 5.
+# Chỉ cài pygame-ce, không cài thêm gói pygame vì cùng dùng tên import pygame.
+pygame-ce==2.5.8
