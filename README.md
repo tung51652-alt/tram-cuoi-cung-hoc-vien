@@ -1,107 +1,66 @@
 <p align="center"><img src="docs/images/cover.png" alt="Trạm Cuối Cùng" width="100%"></p>
 
-# Hướng dẫn học viên
+# Trạm Cuối Cùng: Hướng dẫn học viên
 
 > **Hiện mới mở khu Luyện tập.** Các màn kiểm tra sẽ mở vào ngày kiểm tra. Hôm đó chạy `git pull` (hoặc tải lại ZIP) để có thêm các màn; bài luyện của bạn vẫn giữ nguyên.
 
-Đọc lướt mục 1–3 là đủ để bắt đầu. Các mục sau để tra khi cần.
+Bạn viết code Python, **robot trong game làm theo đúng code của bạn**. Không cần điều khiển bằng bàn phím, cũng không cần biết làm game.
 
-## 1. Cài một lần
+## Bắt đầu trong 3 bước
 
-Làm theo phần **Cài một lần** trong mục **Cài một lần** bên dưới. Sau đó mở thư mục game bằng VS Code và chọn interpreter là `.venv`:
+**Bước 1: Cài Python 3.10 trở lên** từ [python.org](https://www.python.org/downloads/). Trên Windows nhớ tick ô **"Add python.exe to PATH"**.
 
-- Bấm **Ctrl+Shift+P**, gõ *Python: Select Interpreter*, rồi chọn dòng có chữ `.venv`.
+**Bước 2: Chạy file cài đặt** trong thư mục game. Lần đầu cần mạng, khoảng 1–3 phút:
 
-Từ lần sau chỉ cần chạy `main.py`. Game sẽ nhớ màn bạn đang làm.
-
-## 2. Mỗi lần làm bài
-
-```
-Sửa code  →  Lưu (Ctrl+S)  →  Bấm "Chạy lại code" (F5)  →  Xem robot làm
-```
-
-Không cần tắt game. Mỗi lần chạy lại, thế giới được đặt lại từ đầu và game dùng code mới nhất của bạn.
-
-## 3. Bắt đầu từ đâu
-
-1. **Luyện tập** (tab đầu tiên): 7 bài nhỏ trong `student/practice/`. Bấm **F1** để xem đề, nhấn **H** để mở gợi ý.
-2. **Màn 0 → 3**: làm theo thứ tự nào cũng được. Màn nào cũng có điểm riêng.
-
-Mỗi file chỉ cần có hàm `run(ctx)`:
-
-```python
-def run(ctx):
-    ctx.activate("BIP")
-    ctx.say("BIP", "Xin chào!")
-    ctx.move_to("BIP", "rally_point")
-```
-
-`ctx` là bộ công cụ. Xem danh sách công cụ bằng **F1** trong game hoặc [Bảng công cụ](docs/BANG_CONG_CU.md).
-
-## 4. Bị từ chối thì sao?
-
-Mỗi lệnh trả về một kết quả. Bạn có thể đọc kết quả đó để quyết định làm gì tiếp:
-
-```python
-kq = ctx.open_gate("BIP", "gate_A")
-if not kq.ok:
-    print(kq.reason)   # ví dụ: missing_card (thiếu thẻ)
-```
-
-Bị từ chối **không mất điểm**. Robot chỉ đứng yên, việc của bạn là thử cách khác.
-
-## 5. Khi code bị lỗi
-
-Game hiện khung đỏ với **tên file, số dòng, đúng dòng code bị lỗi** và một gợi ý. Các lỗi hay gặp:
-
-| Thấy | Thường do |
+| Máy | Làm gì |
 |---|---|
-| `... đang là None` | Hàm của bạn quên `return` |
-| `NameError` | Gõ sai tên biến hoặc tên hàm |
-| `KeyError` | Dict không có khóa đó, hãy `print` dict ra xem |
-| *Chạy quá thời gian* | Vòng lặp `while` không bao giờ dừng |
+| Windows | Bấm đúp **`setup.bat`** |
+| Ubuntu / macOS | Mở Terminal trong thư mục game, gõ **`bash setup.sh`** |
 
-Lỗi ở màn này không ảnh hưởng màn khác. Những gì robot làm được trước khi lỗi vẫn được tính.
+Cửa sổ game sẽ mở ra. Lần sau muốn chơi tiếp, chạy lại đúng file đó.
 
-## 6. Phím tắt
+**Bước 3: Làm bài luyện 1** theo [hướng dẫn từng bước](docs/huong-dan/03-bai-dau-tien.md).
 
-| Phím | Việc |
-|---|---|
-| F5 | Chạy lại code |
-| F6 | Chấm màn này / kiểm tra bài luyện |
-| F7 | Chấm cả bài |
-| F1 | Đề và công cụ (bài luyện: nhấn H để xem gợi ý) |
-| F2 | Xem kết quả đã lưu |
-| Space | Tạm dừng / tiếp tục |
+![Giao diện game](docs/images/huong-dan/giao-dien.png)
 
-## 7. Chấm điểm như thế nào
+## Vòng làm bài
 
-- Chấm theo **việc robot thật sự làm được**, ví dụ "Đã giao 4/6 kiện". Không chấm code đẹp hay ngắn.
-- Có nhiều cách làm đúng. Đi từng chuyến hay gom hàng đều được, miễn đạt mục tiêu.
-- Màn 2 và 3 có điểm OOP: tự viết lớp con (`PlannerBase`, `RobotBase`) và thực sự dùng chúng.
-- Khi chấm chính thức, bài còn chạy trên **bản đồ khác cùng luật** (tên và thứ tự có thể khác). Hãy lấy dữ liệu qua `ctx`, **đừng viết cứng id**.
-
-## 8. Hỏi nhanh
-
-- **Có cần viết nhiều file không?** Không. Mỗi màn một file là đủ. Bạn có thể thêm file helper trong `student/` nếu muốn.
-- **Truyền nguyên dict có được không?** Được: `ctx.move_to(robot, nơi)` với `robot` lấy từ `ctx.robots()`.
-- **Điểm trong game có phải điểm chính thức không?** Không. Đó là điểm thử. Giảng viên sẽ chấm lại từ code bạn nộp.
-
-## Cài một lần
-
-Cần **Python 3.10 trở lên**. Cài xong thì chơi được không cần mạng.
-
-**Windows**
-```bat
-py -m venv .venv
-.venv\Scripts\python.exe -m pip install -r requirements.txt
-.venv\Scripts\python.exe main.py
+```
+Sửa code trong VS Code  →  Lưu (Ctrl+S)  →  Bấm "Chạy lại code" (F5)  →  Xem robot làm  →  F6 để kiểm tra
 ```
 
-**Ubuntu**
-```bash
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
-.venv/bin/python main.py
-```
+Không cần tắt game. Mỗi lần chạy lại, mọi thứ được đặt lại từ đầu và game dùng code mới nhất.
 
+## Học theo thứ tự
+
+| # | Bài hướng dẫn | Luyện bằng |
+|---|---|---|
+| 1 | [Cài đặt và mở game](docs/huong-dan/01-cai-dat.md) | — |
+| 2 | [Làm quen giao diện](docs/huong-dan/02-giao-dien.md) | — |
+| 3 | [Bài đầu tiên: đánh thức BIP](docs/huong-dan/03-bai-dau-tien.md) | Bài luyện 1 |
+| 4 | [Đọc thông tin: robot, địa điểm, mục tiêu](docs/huong-dan/04-doc-thong-tin.md) | Bài luyện 2 |
+| 5 | [Di chuyển và pin](docs/huong-dan/05-di-chuyen-va-pin.md) | Bài luyện 3 |
+| 6 | [Bị từ chối thì làm gì?](docs/huong-dan/06-bi-tu-choi.md) | Bài luyện 4 |
+| 7 | [Vòng lặp và giao hàng](docs/huong-dan/07-giao-hang.md) | Bài luyện 5 |
+| 8 | [Đội robot của bạn (OOP)](docs/huong-dan/08-doi-robot.md) | Bài luyện 6 |
+| 9 | [Sửa lỗi code](docs/huong-dan/09-sua-loi.md) | Bài luyện 7 |
+| 10 | [Xem đề, gợi ý và cách chấm điểm](docs/huong-dan/10-de-va-cham-diem.md) | — |
+
+Tra nhanh mọi lệnh: [Bảng công cụ](docs/BANG_CONG_CU.md). Trong game thì bấm **F1**.
+
+## Phím tắt
+
+| F5 | F6 | F7 | F1 | F2 | Space |
+|---|---|---|---|---|---|
+| Chạy lại code | Kiểm tra / chấm màn | Chấm cả bài | Đề & công cụ (H: gợi ý) | Kết quả | Tạm dừng |
+
+## Hỏi nhanh
+
+- **Có cần biết OOP mới làm được không?** Các nhiệm vụ chính chỉ cần `if`, `for`, `list`, `dict`. OOP có điểm riêng ở Màn 2 và 3.
+- **Có cần chia nhiều file không?** Không. Mỗi màn một file là đủ.
+- **Bị từ chối có mất điểm không?** Không. Đọc lý do rồi thử cách khác ([xem bài 6](docs/huong-dan/06-bi-tu-choi.md)).
+- **Điểm trong game là điểm chính thức à?** Không. Đó là điểm thử. Giảng viên chấm lại từ code bạn nộp.
+
+## Lời cảm ơn
+
+Xin chân thành cảm ơn nhà tài trợ **anh Phạm Minh Khương** (HIT-15), Trưởng ban Đào tạo và Phát triển, đã đồng hành và hỗ trợ dự án.

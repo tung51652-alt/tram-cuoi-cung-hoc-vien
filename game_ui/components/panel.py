@@ -54,9 +54,14 @@ def side_panel(surface, rect, player, scroll=0):
     clip = surface.get_clip()
     surface.set_clip(area)
     lines = []
-    for kind, message in player.log:
-        color = {"ok": theme.TEXT, "refuse": theme.AMBER, "error": theme.RED, "call": theme.CYAN}.get(kind, theme.TEXT)
-        icon = {"refuse": "warn", "error": "error", "call": "call"}.get(kind, "dot")
+    entries = list(player.log)
+    if player.done and getattr(player, "prints", None):
+        entries.append(("print_head", "Bạn đã print:"))
+        entries += [("print", line) for line in player.prints]
+    for kind, message in entries:
+        color = {"ok": theme.TEXT, "refuse": theme.AMBER, "error": theme.RED, "call": theme.CYAN,
+                 "print_head": theme.GREEN, "print": (190, 232, 200)}.get(kind, theme.TEXT)
+        icon = {"refuse": "warn", "error": "error", "call": "call", "print_head": None, "print": None}.get(kind, "dot")
         wrapped = P.wrap(message, 12, area.width - 18)
         for i, line in enumerate(wrapped[:3]):
             lines.append((icon if i == 0 else None, line, color))

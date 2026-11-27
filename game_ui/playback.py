@@ -116,6 +116,7 @@ class TracePlayer:
         self.visited = set()
         self.bubbles = []
         self.log = []            # (kind, text) cho panel sự kiện
+        self.prints = []         # dòng print của học viên, hiện sau khi phát xong
         self.banner = None       # (kind, text) lỗi / timeout / kết thúc
         self.steps = [self._make_step(e) for e in self.events if e.get("kind") != "start"]
         self.index = 0

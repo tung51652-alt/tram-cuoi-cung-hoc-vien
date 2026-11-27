@@ -207,6 +207,7 @@ class App:
         self.running_since = None
         self.last_result = result
         self.player = TracePlayer(result["events"])
+        self.player.prints = print_lines(result.get("log", ""))
         if result["status"] in ("timeout", "crash") and not result["events"]:
             self.player.banner = ("timeout", result["error"]["message"] + " " + (result["error"].get("hint") or ""))
 
@@ -552,6 +553,14 @@ def practice_lines(result):
     lines += _error_lines(result.get("error"))
     if not result["done"]:
         lines.append(("p", "Mở \"Đề & công cụ\" (F1) và nhấn H để xem gợi ý từng bước."))
+    return lines
+
+
+def print_lines(log, limit=40):
+    """Các dòng print của học viên (tối đa `limit` dòng cuối) để hiện ở nhật ký."""
+    lines = [line for line in str(log or "").splitlines() if line.strip()]
+    if len(lines) > limit:
+        lines = [f"… (bỏ bớt {len(lines) - limit} dòng đầu)"] + lines[-limit:]
     return lines
 
 
