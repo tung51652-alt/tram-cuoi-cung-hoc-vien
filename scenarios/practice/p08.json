@@ -1,0 +1,113 @@
+{
+  "id": "p08",
+  "file": "p08_battery.py",
+  "title": "Pin và trạm sạc",
+  "description": "BIP chỉ còn ít pin, mà trạm tiền tiêu (outpost) ở rất xa. Hãy sạc trước rồi mới đi.",
+  "locations": [
+    {
+      "name": "dock_a",
+      "kind": "start",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 140,
+      "y": 480
+    },
+    {
+      "name": "charge_bay",
+      "kind": "charger",
+      "zone": null,
+      "is_charger": true,
+      "charges_left": null,
+      "x": 300,
+      "y": 200
+    },
+    {
+      "name": "tunnel",
+      "kind": "corridor",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 520,
+      "y": 480
+    },
+    {
+      "name": "outpost",
+      "kind": "rally",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 760,
+      "y": 200
+    }
+  ],
+  "edges": [
+    [
+      "dock_a",
+      "charge_bay",
+      2
+    ],
+    [
+      "dock_a",
+      "tunnel",
+      6
+    ],
+    [
+      "charge_bay",
+      "tunnel",
+      6
+    ],
+    [
+      "tunnel",
+      "outpost",
+      6
+    ]
+  ],
+  "robots": [
+    {
+      "id": "BIP",
+      "name": "BIP",
+      "battery": 5,
+      "max_battery": 30,
+      "location": "dock_a",
+      "cards": [
+        1
+      ],
+      "active": true
+    }
+  ],
+  "goals": [
+    {
+      "id": "outpost",
+      "type": "robot_at",
+      "robot": "BIP",
+      "location": "outpost",
+      "text": "BIP tới được outpost"
+    }
+  ],
+  "steps": [
+    "Xem đi tới outpost tốn bao nhiêu pin, so với pin BIP đang có.",
+    "Thiếu thì tới trạm sạc và sạc đầy.",
+    "Đi tới outpost."
+  ],
+  "hints": [
+    "Việc 1: ctx.route_cost('BIP', 'outpost') cho số pin cần; pin hiện có ở ctx.robot('BIP')['battery'].",
+    "Việc 2: tên trạm sạc lấy bằng ctx.find_location('charger'), move_to tới đó rồi ctx.charge('BIP'). Hoặc dùng ctx.go_charge('BIP').",
+    "Nếu đi thẳng khi thiếu pin, lệnh bị từ chối với lý do low_battery. Hướng dẫn: docs/huong-dan/05-di-chuyen-va-pin.md"
+  ],
+  "tools": [
+    "ctx.route_cost",
+    "ctx.robot",
+    "ctx.find_location",
+    "ctx.charge",
+    "ctx.go_charge",
+    "ctx.move_to"
+  ],
+  "level": "practice",
+  "checks": [
+    {
+      "type": "all_goals",
+      "text": "Hoàn thành mọi mục tiêu của bài"
+    }
+  ]
+}

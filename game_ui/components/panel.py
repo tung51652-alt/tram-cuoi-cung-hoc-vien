@@ -56,14 +56,15 @@ def side_panel(surface, rect, player, scroll=0):
     lines = []
     entries = list(player.log)
     if player.done and getattr(player, "prints", None):
-        entries.append(("print_head", "Bạn đã print:"))
+        entries.append(("print_head", "Bạn đã print (F6 để xem kèm giải thích):"))
         entries += [("print", line) for line in player.prints]
     for kind, message in entries:
         color = {"ok": theme.TEXT, "refuse": theme.AMBER, "error": theme.RED, "call": theme.CYAN,
                  "print_head": theme.GREEN, "print": (190, 232, 200)}.get(kind, theme.TEXT)
         icon = {"refuse": "warn", "error": "error", "call": "call", "print_head": None, "print": None}.get(kind, "dot")
         wrapped = P.wrap(message, 12, area.width - 18)
-        for i, line in enumerate(wrapped[:3]):
+        limit = None if kind in ("print", "print_head") else 3  # dòng print hiện đầy đủ, không cắt
+        for i, line in enumerate(wrapped[:limit]):
             lines.append((icon if i == 0 else None, line, color))
     visible = area.height // 16
     start = max(0, len(lines) - visible - scroll)

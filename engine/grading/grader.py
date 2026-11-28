@@ -246,7 +246,7 @@ def grade_level(level, submission_dir, mode="public", rubric=None, run_id=None, 
         goals = case["world"].goal_status()
         case_reports.append({"case_id": case_id, "status": case["status"], "scoring": True,
                              "goals_done": sum(1 for g in goals if g["done"]), "goals_total": len(goals),
-                             "error": case["error"], "log": case["log"][-2000:],
+                             "error": case["error"], "log": case["log"][-16000:],
                              "trace_valid": not case["problems"], "events": len(case["events"])})
     statuses = {c["status"] for c in case_reports}
     status = "complete" if statuses == {"complete"} else ("error" if "error" in statuses else "partial")

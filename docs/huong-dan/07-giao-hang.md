@@ -62,6 +62,6 @@ Có hai điều kiện để được điểm OOP:
 1. Object **thực sự giao được hàng** bên trong `execute`.
 2. `report()` trả về **đúng** các kiện đã giao.
 
-🧪 Luyện: **bài 5**.
+🧪 Luyện: **bài 5** (vòng lặp giao hàng), **bài 10** (khoang hàng có giới hạn, `cargo`, `receipts`, `PlannerBase`).
 
 ➡️ Tiếp theo: [8. Đội robot của bạn](08-doi-robot.md)

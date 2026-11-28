@@ -54,7 +54,9 @@ def run(ctx):
 
 ## Xem `print` ở đâu?
 
-Sau khi robot làm xong, các dòng `print` của bạn hiện ở **cuối Nhật ký** (khung bên phải), dưới dòng *Bạn đã print:* màu xanh. Cũng có thể cho robot **nói** điều bạn muốn xem:
+Sau khi robot làm xong, các dòng `print` của bạn hiện **đầy đủ** ở **cuối Nhật ký** (khung bên phải, cuộn chuột để xem hết). Bấm **F6** để xem toàn bộ trong một cửa sổ lớn. Nếu bạn in một dict (ví dụ `print(ctx.robot("BIP"))`), game giải thích luôn từng khóa như `'battery'`, `'location'` nghĩa là gì.
+
+Cũng có thể cho robot **nói** điều bạn muốn xem:
 
 ```python
 def run(ctx):

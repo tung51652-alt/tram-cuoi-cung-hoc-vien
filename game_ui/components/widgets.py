@@ -57,11 +57,15 @@ class Overlay:
         for kind, value in self.lines:
             size = {"h": 17, "code": 14}.get(kind, 14)
             weight = {"h": "Bold", "code": "SemiBold"}.get(kind, "Regular")
-            if kind == "code":
+            if kind in ("code", "gap"):
                 rows.append((kind, str(value), size, weight))
                 continue
-            for i, row in enumerate(P.wrap(value, size, width - (22 if kind in ("ok", "todo", "warn", "error") else 0),
-                                           weight)):
+            if kind == "printline":  # dòng print dài được xuống dòng, không bị cắt mất
+                for i, row in enumerate(P.wrap(value, size, width - 14, weight)):
+                    rows.append(("printline" if i == 0 else "printline+", row, size, weight))
+                continue
+            indent = 22 if kind in ("ok", "todo", "warn", "error") else (16 if kind in ("desc", "when") else 0)
+            for i, row in enumerate(P.wrap(value, size, width - indent, weight)):
                 rows.append((kind if i == 0 else kind + "+", row, size, weight))
         return rows
 
@@ -101,16 +105,22 @@ class Overlay:
         y = area.top
         for kind, value, size, weight in rows[self.scroll:self.scroll + visible]:
             base = kind.rstrip("+")
-            x = area.left + (22 if base in ("ok", "todo", "warn", "error") else 0)
+            if base == "gap":  # khoảng trống giữa các khối, nửa dòng
+                y += per_row // 2
+                continue
+            x = area.left + (22 if base in ("ok", "todo", "warn", "error") else (16 if base in ("desc", "when") else 0))
             color = {"h": theme.TEXT, "code": theme.CYAN, "ok": theme.GREEN, "todo": theme.TEXT, "warn": theme.AMBER,
-                     "error": theme.RED, "muted": theme.MUTED}.get(base, theme.TEXT)
+                     "error": theme.RED, "muted": theme.MUTED, "desc": theme.TEXT, "when": (170, 210, 255),
+                     "printline": (190, 232, 200)}.get(base, theme.TEXT)
             if base == "h":
                 y += 4
             if not kind.endswith("+") and base in ("ok", "todo", "warn", "error"):
                 P.icon(surface, base, (area.left + 8, y + 10), 6)
-            if base == "code":
+            if base in ("code", "printline"):
                 pygame.draw.rect(surface, (12, 20, 32), (area.left, y, area.width, per_row))
                 x += 10
+            if base == "desc" and not kind.endswith("+"):
+                pygame.draw.line(surface, theme.CYAN, (area.left + 4, y + 2), (area.left + 4, y + per_row - 2), 2)
             P.text(surface, value, (x, y + 1), size, color, weight)
             y += per_row
         surface.set_clip(clip)

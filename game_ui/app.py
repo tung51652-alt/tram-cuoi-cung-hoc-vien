@@ -132,9 +132,9 @@ class App:
         self.practice_buttons = []
         for i, ex in enumerate(self.exercises):
             self.practice_buttons.append(Button(("exercise", ex["id"]), ex["id"][1:].lstrip("0") or ex["id"],
-                                                (theme.PANEL.left + 16 + i * 44, theme.PANEL.top + 8, 38, 26)))
+                                                (theme.PANEL.left + 14 + i * 30, theme.PANEL.top + 8, 27, 26)))
         self.practice_buttons.append(Button("reset_practice", "Xóa tiến độ",
-                                            (theme.PANEL.right - 104, theme.PANEL.top + 8, 92, 26)))
+                                            (theme.PANEL.right - 96, theme.PANEL.top + 8, 86, 26)))
 
     def _refresh_buttons(self):
         for tab in self.tabs:
@@ -302,10 +302,13 @@ class App:
             ex = scenario["id"]
             shown = self.hints_shown.get(ex, 0)
             lines = [("h", scenario["title"]), ("p", scenario["description"]),
-                     ("muted", f"File: student/practice/{scenario['file']}"), ("h", "Gợi ý")]
+                     ("muted", f"File bài làm: student/practice/{scenario['file']}"), ("gap", ""),
+                     ("h", "Các việc cần làm")]
+            lines += [("todo", f"{i}. {step}") for i, step in enumerate(scenario.get("steps", []), start=1)]
+            lines += [("gap", ""), ("h", "Gợi ý (nhấn H để mở thêm từng gợi ý)")]
             for i, hint in enumerate(scenario["hints"]):
-                lines.append(("todo", hint) if i < shown else ("muted", f"Gợi ý {i + 1}: nhấn H để mở"))
-            lines += content.reference_lines(0)[0:]
+                lines.append(("ok", f"Gợi ý {i + 1}: {hint}") if i < shown else ("muted", f"Gợi ý {i + 1}: nhấn H để mở"))
+            lines += [("gap", "")] + content.practice_tool_lines(scenario.get("tools", []))
             self.overlay = Overlay(f"Bài luyện {ex} — {PRACTICE_LABEL}", lines, theme.GREEN)
             return
         level = self.settings["level"]
@@ -533,6 +536,8 @@ def level_lines(level, stale_reason=None):
         if case.get("error"):
             lines += _error_lines(case["error"])
             break
+    if level["cases"]:
+        lines += print_section(level["cases"][0].get("log"))
     return lines
 
 
@@ -551,16 +556,33 @@ def practice_lines(result):
     for check in result["checks"]:
         lines.append(("ok" if check["passed"] else "todo", f"{check['text']}: {check['evidence']}"))
     lines += _error_lines(result.get("error"))
+    lines += print_section(result.get("log"))
     if not result["done"]:
         lines.append(("p", "Mở \"Đề & công cụ\" (F1) và nhấn H để xem gợi ý từng bước."))
     return lines
+
+
+def print_section(log):
+    """Toàn bộ dòng print (không cắt) + giải thích các khóa quen thuộc, cho cửa sổ kết quả F6."""
+    lines = [line for line in str(log or "").splitlines() if line.strip()]
+    if not lines:
+        return []
+    out = [("gap", ""), ("h", f"Bạn đã print ({len(lines)} dòng)")]
+    out += [("printline", line) for line in lines[-300:]]
+    if len(lines) > 300:
+        out.insert(2, ("muted", f"(chỉ hiện 300 dòng cuối trong {len(lines)} dòng)"))
+    keys = content.explain_keys("\n".join(lines))
+    if keys:
+        out += [("gap", ""), ("h", "Các khóa trong dict bạn in ra nghĩa là gì?")]
+        out += [("desc", f"'{key}': {meaning}") for key, meaning in keys]
+    return out
 
 
 def print_lines(log, limit=40):
     """Các dòng print của học viên (tối đa `limit` dòng cuối) để hiện ở nhật ký."""
     lines = [line for line in str(log or "").splitlines() if line.strip()]
     if len(lines) > limit:
-        lines = [f"… (bỏ bớt {len(lines) - limit} dòng đầu)"] + lines[-limit:]
+        lines = [f"… (ẩn {len(lines) - limit} dòng đầu, bấm F6 để xem đủ)"] + lines[-limit:]
     return lines
 
 

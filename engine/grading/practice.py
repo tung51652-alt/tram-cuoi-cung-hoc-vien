@@ -35,7 +35,7 @@ def check_exercise(exercise_id, submission_dir, run_id=None, cancel=None):
         checks.append({"text": spec["text"], "passed": passed, "evidence": evidence})
     goals = case["world"].goal_status()
     return {"mode": "practice", "label": PRACTICE_LABEL, "scoring": False, "exercise": exercise_id,
-            "title": scenario["title"], "status": case["status"], "error": case["error"], "log": case["log"][-2000:],
+            "title": scenario["title"], "status": case["status"], "error": case["error"], "log": case["log"][-16000:],
             "done": all(c["passed"] for c in checks), "checks": checks, "goals": goals, "hints": scenario["hints"],
             "events": case["events"]}
 

@@ -1,0 +1,157 @@
+{
+  "id": "p09",
+  "file": "p09_gates.py",
+  "title": "Cổng và thẻ",
+  "description": "Có hai khu X và Y, mỗi khu có một cổng. Mỗi cổng cần một cấp thẻ khác nhau. Hãy chọn đúng robot cho từng cổng.",
+  "locations": [
+    {
+      "name": "hub",
+      "kind": "start",
+      "zone": null,
+      "is_charger": true,
+      "charges_left": null,
+      "x": 430,
+      "y": 560
+    },
+    {
+      "name": "door_X",
+      "kind": "gate",
+      "zone": "X",
+      "is_charger": false,
+      "charges_left": null,
+      "x": 220,
+      "y": 360
+    },
+    {
+      "name": "beacon_X",
+      "kind": "beacon",
+      "zone": "X",
+      "is_charger": false,
+      "charges_left": null,
+      "x": 220,
+      "y": 140
+    },
+    {
+      "name": "door_Y",
+      "kind": "gate",
+      "zone": "Y",
+      "is_charger": false,
+      "charges_left": null,
+      "x": 640,
+      "y": 360
+    },
+    {
+      "name": "beacon_Y",
+      "kind": "beacon",
+      "zone": "Y",
+      "is_charger": false,
+      "charges_left": null,
+      "x": 640,
+      "y": 140
+    }
+  ],
+  "edges": [
+    [
+      "hub",
+      "door_X",
+      4
+    ],
+    [
+      "door_X",
+      "beacon_X",
+      3,
+      "gate_X"
+    ],
+    [
+      "hub",
+      "door_Y",
+      4
+    ],
+    [
+      "door_Y",
+      "beacon_Y",
+      3,
+      "gate_Y"
+    ]
+  ],
+  "gates": [
+    {
+      "id": "gate_X",
+      "location": "door_X",
+      "zone": "X",
+      "required_card": 1
+    },
+    {
+      "id": "gate_Y",
+      "location": "door_Y",
+      "zone": "Y",
+      "required_card": 2
+    }
+  ],
+  "robots": [
+    {
+      "id": "BIP",
+      "name": "BIP",
+      "battery": 30,
+      "max_battery": 30,
+      "location": "hub",
+      "cards": [
+        1
+      ],
+      "active": true
+    },
+    {
+      "id": "KEP",
+      "name": "KEP",
+      "battery": 30,
+      "max_battery": 30,
+      "location": "hub",
+      "cards": [
+        1,
+        2
+      ]
+    }
+  ],
+  "goals": [
+    {
+      "id": "zone_X",
+      "type": "zone",
+      "beacon": "beacon_X",
+      "points": 0,
+      "text": "Mở đường và đưa robot tới đèn hiệu khu X"
+    },
+    {
+      "id": "zone_Y",
+      "type": "zone",
+      "beacon": "beacon_Y",
+      "points": 0,
+      "text": "Mở đường và đưa robot tới đèn hiệu khu Y"
+    }
+  ],
+  "steps": [
+    "Lấy danh sách cổng.",
+    "Với mỗi cổng: chọn robot mở được cổng đó.",
+    "Đưa robot tới cổng, mở cổng.",
+    "Đi tiếp tới đèn hiệu của khu đó."
+  ],
+  "hints": [
+    "Việc 1: ctx.gates(). Mỗi cổng có 'location' (chỗ đứng để mở), 'zone' và 'required_card'.",
+    "Việc 2: hoặc so 'required_card' với r['cards'] của từng robot trong ctx.robots(); hoặc đưa robot tới cổng rồi hỏi ctx.check_gate(robot, cổng).ok.",
+    "Việc 4: ctx.find_location('beacon', cổng['zone']). Hướng dẫn: docs/huong-dan/06-bi-tu-choi.md"
+  ],
+  "tools": [
+    "ctx.gates",
+    "ctx.robots",
+    "ctx.check_gate",
+    "ctx.open_gate",
+    "ctx.move_to",
+    "ctx.find_location"
+  ],
+  "level": "practice",
+  "checks": [
+    {
+      "type": "all_goals",
+      "text": "Hoàn thành mọi mục tiêu của bài"
+    }
+  ]
+}

@@ -43,6 +43,6 @@ Viết gọn cũng được: `if ctx.open_gate("BIP", "gate_X"):`
 
 Chọn cách nào cũng được điểm như nhau.
 
-🧪 Luyện: **bài 4**.
+🧪 Luyện: **bài 4** (bị từ chối), **bài 9** (cổng và thẻ: dùng `gates`, `check_gate` để chọn đúng robot).
 
 ➡️ Tiếp theo: [7. Vòng lặp và giao hàng](07-giao-hang.md)

@@ -1,9 +1,8 @@
 {
   "id": "p03",
-  "level": "practice",
   "file": "p03_move.py",
   "title": "Di chuyển",
-  "description": "Đưa BIP ghé trạm sạc rồi tới điểm tập kết.",
+  "description": "Đưa BIP ghé trạm sạc (charge_bay) rồi tới điểm tập kết (rally_point).",
   "locations": [
     {
       "name": "dock_boot",
@@ -88,15 +87,23 @@
       "text": "Kết thúc ở rally_point"
     }
   ],
+  "steps": [
+    "Cho BIP đi tới charge_bay.",
+    "Cho BIP đi tiếp tới rally_point."
+  ],
+  "hints": [
+    "Mỗi việc là một lệnh ctx.move_to(robot, tên nơi đến).",
+    "Không cần chỉ đường, game tự tìm đường.",
+    "Hướng dẫn: docs/huong-dan/05-di-chuyen-va-pin.md"
+  ],
+  "tools": [
+    "ctx.move_to"
+  ],
+  "level": "practice",
   "checks": [
     {
       "type": "all_goals",
       "text": "Hoàn thành mọi mục tiêu của bài"
     }
-  ],
-  "hints": [
-    "ctx.move_to(robot_id, ten_dia_diem).",
-    "Engine tự tìm đường, bạn chỉ cần tên đích.",
-    "Đi charge_bay trước, rally_point sau."
   ]
 }

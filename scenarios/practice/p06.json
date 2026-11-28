@@ -1,9 +1,8 @@
 {
   "id": "p06",
-  "level": "practice",
   "file": "p06_oop.py",
   "title": "Robot của riêng bạn",
-  "description": "Viết hai lớp con RobotBase (sửa chữa, cứu hộ), đăng ký và dispatch mỗi robot một việc.",
+  "description": "Viết hai lớp con RobotBase (sửa chữa, cứu hộ), đăng ký và giao mỗi robot một việc.",
   "locations": [
     {
       "name": "base",
@@ -127,9 +126,25 @@
       "text": "Hai lớp con override act cho hai chuyên môn"
     }
   ],
+  "steps": [
+    "Xem danh sách việc và slot.",
+    "Viết lớp robot sửa chữa: tới chỗ hỏng rồi sửa.",
+    "Viết lớp robot cứu hộ: tới chỗ người, bắt đầu dẫn, đưa về vùng an toàn.",
+    "Tạo hai robot, đăng ký, rồi giao mỗi robot một việc."
+  ],
   "hints": [
-    "class Fixer(RobotBase): def act(self, ctx, task): ...",
-    "Gọi super().__init__(slot_id) nếu bạn viết __init__.",
-    "robot = Fixer(\"R1\"); ctx.register_robot(robot); ctx.dispatch(robot, \"t1\")."
-  ]
+    "Việc 1: ctx.tasks() và ctx.slots(). Slot 'R1' để sửa chữa, 'S1' để cứu hộ.",
+    "Việc 2–3: class Fixer(RobotBase): def act(self, ctx, task): ... Trong act dùng self.id.",
+    "Việc 4: robot = Fixer('R1'); ctx.register_robot(robot); ctx.dispatch(robot, 't1'). Hướng dẫn: docs/huong-dan/08-doi-robot.md"
+  ],
+  "tools": [
+    "ctx.tasks",
+    "ctx.slots",
+    "ctx.register_robot",
+    "ctx.dispatch",
+    "ctx.repair",
+    "ctx.rescue",
+    "ctx.find_location"
+  ],
+  "level": "practice"
 }

@@ -1,0 +1,168 @@
+{
+  "id": "p10",
+  "file": "p10_planner.py",
+  "title": "Khoang hàng và PlannerBase",
+  "description": "Giao 4 kiện. Khoang BIP chỉ chở được 6 nên phải đi nhiều chuyến. Viết cách giao hàng trong một lớp con PlannerBase.",
+  "locations": [
+    {
+      "name": "depot",
+      "kind": "start",
+      "zone": null,
+      "is_charger": true,
+      "charges_left": null,
+      "x": 160,
+      "y": 330
+    },
+    {
+      "name": "lab",
+      "kind": "dock",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 640,
+      "y": 140
+    },
+    {
+      "name": "med_bay",
+      "kind": "dock",
+      "zone": null,
+      "is_charger": false,
+      "charges_left": null,
+      "x": 640,
+      "y": 520
+    }
+  ],
+  "edges": [
+    [
+      "depot",
+      "lab",
+      4
+    ],
+    [
+      "depot",
+      "med_bay",
+      4
+    ],
+    [
+      "lab",
+      "med_bay",
+      5
+    ]
+  ],
+  "robots": [
+    {
+      "id": "BIP",
+      "name": "BIP",
+      "battery": 40,
+      "max_battery": 40,
+      "location": "depot",
+      "cards": [
+        1
+      ],
+      "capacity": 6
+    }
+  ],
+  "packages": [
+    {
+      "id": "k1",
+      "name": "Bình nước",
+      "weight": 3,
+      "category": "life",
+      "destination": "lab",
+      "location": "depot",
+      "status": "waiting"
+    },
+    {
+      "id": "k2",
+      "name": "Hộp dụng cụ",
+      "weight": 2,
+      "category": "tools",
+      "destination": "lab",
+      "location": "depot",
+      "status": "waiting"
+    },
+    {
+      "id": "k3",
+      "name": "Túi thuốc",
+      "weight": 2,
+      "category": "medical",
+      "destination": "med_bay",
+      "location": "depot",
+      "status": "waiting"
+    },
+    {
+      "id": "k4",
+      "name": "Mặt nạ",
+      "weight": 2,
+      "category": "medical",
+      "destination": "med_bay",
+      "location": "depot",
+      "status": "waiting"
+    }
+  ],
+  "goals": [
+    {
+      "id": "k1",
+      "type": "delivered",
+      "package": "k1",
+      "points": 0,
+      "text": "Giao kiện 'Bình nước' tới đúng nơi nhận"
+    },
+    {
+      "id": "k2",
+      "type": "delivered",
+      "package": "k2",
+      "points": 0,
+      "text": "Giao kiện 'Hộp dụng cụ' tới đúng nơi nhận"
+    },
+    {
+      "id": "k3",
+      "type": "delivered",
+      "package": "k3",
+      "points": 0,
+      "text": "Giao kiện 'Túi thuốc' tới đúng nơi nhận"
+    },
+    {
+      "id": "k4",
+      "type": "delivered",
+      "package": "k4",
+      "points": 0,
+      "text": "Giao kiện 'Mặt nạ' tới đúng nơi nhận"
+    }
+  ],
+  "checks": [
+    {
+      "type": "all_goals",
+      "text": "Hoàn thành mọi mục tiêu của bài"
+    },
+    {
+      "type": "planner_use",
+      "text": "Planner của bạn thực sự giao được hàng"
+    },
+    {
+      "type": "planner_state",
+      "text": "report() trả về đúng các kiện đã giao"
+    }
+  ],
+  "steps": [
+    "Viết lớp con PlannerBase có execute(self, ctx) và report(self).",
+    "Trong execute: giao từng kiện, không để khoang quá tải.",
+    "Ghi lại id kiện giao thành công; report() trả về danh sách đó.",
+    "Trong run: ctx.use_planner(object của bạn)."
+  ],
+  "hints": [
+    "Việc 1: class GiaoHang(PlannerBase): trong __init__ gọi super().__init__('tên') và tạo self.da_giao = [].",
+    "Việc 2: trước khi load, xem ctx.cargo('BIP'): 'weight' cộng kiện mới không được vượt 'capacity'. Bị từ chối over_capacity thì đi giao bớt.",
+    "Việc 3: unload thành công và kq.data['delivered'] là True thì append id. Kiểm tra bằng ctx.receipts(). Hướng dẫn: docs/huong-dan/07-giao-hang.md"
+  ],
+  "tools": [
+    "ctx.packages",
+    "ctx.cargo",
+    "ctx.load",
+    "ctx.unload",
+    "ctx.receipts",
+    "ctx.use_planner",
+    "ctx.move_to"
+  ],
+  "level": "practice"
+}

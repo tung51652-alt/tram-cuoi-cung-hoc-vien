@@ -1,9 +1,8 @@
 {
   "id": "p04",
-  "level": "practice",
   "file": "p04_refuse.py",
   "title": "Bị từ chối thì làm gì?",
-  "description": "Cổng cần thẻ cấp 2. Thử mở bằng BIP, đọc lý do, rồi dùng robot khác. BIP cũng đang yếu pin.",
+  "description": "Cổng khu X cần thẻ cấp 2. Thử mở bằng BIP, đọc lý do bị từ chối, rồi tìm cách khác. BIP cũng đang yếu pin.",
   "locations": [
     {
       "name": "hub",
@@ -87,15 +86,29 @@
       "text": "Mở đường và đưa robot tới đèn hiệu khu X"
     }
   ],
+  "steps": [
+    "Đưa một robot tới cổng.",
+    "Thử mở cổng và đọc lý do nếu bị từ chối.",
+    "Đổi sang robot có thẻ phù hợp (sạc pin nếu cần).",
+    "Đi qua cổng tới đèn hiệu khu X."
+  ],
+  "hints": [
+    "Việc 2: kq = ctx.open_gate(...), rồi xem kq.ok và kq.reason.",
+    "Lý do missing_card: robot thiếu thẻ. Xem 'cards' của từng robot. Thiếu pin thì ctx.go_charge.",
+    "Việc 4: tên đèn hiệu lấy bằng ctx.find_location('beacon', 'X'). Hướng dẫn: docs/huong-dan/06-bi-tu-choi.md"
+  ],
+  "tools": [
+    "ctx.open_gate",
+    "ctx.go_charge",
+    "ctx.move_to",
+    "ctx.find_location",
+    "ctx.robots"
+  ],
+  "level": "practice",
   "checks": [
     {
       "type": "all_goals",
       "text": "Hoàn thành mọi mục tiêu của bài"
     }
-  ],
-  "hints": [
-    "result = ctx.open_gate(...); print(result.reason, result.message).",
-    "reason \"missing_card\" nghĩa là robot không có thẻ; xem r[\"cards\"] trong ctx.robots().",
-    "Pin thấp thì ctx.go_charge(robot_id)."
   ]
 }

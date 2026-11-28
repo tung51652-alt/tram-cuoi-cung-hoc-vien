@@ -39,14 +39,14 @@ Không cần tắt game. Mỗi lần chạy lại, mọi thứ được đặt l
 | 2 | [Làm quen giao diện](docs/huong-dan/02-giao-dien.md) | — |
 | 3 | [Bài đầu tiên: đánh thức BIP](docs/huong-dan/03-bai-dau-tien.md) | Bài luyện 1 |
 | 4 | [Đọc thông tin: robot, địa điểm, mục tiêu](docs/huong-dan/04-doc-thong-tin.md) | Bài luyện 2 |
-| 5 | [Di chuyển và pin](docs/huong-dan/05-di-chuyen-va-pin.md) | Bài luyện 3 |
-| 6 | [Bị từ chối thì làm gì?](docs/huong-dan/06-bi-tu-choi.md) | Bài luyện 4 |
-| 7 | [Vòng lặp và giao hàng](docs/huong-dan/07-giao-hang.md) | Bài luyện 5 |
+| 5 | [Di chuyển và pin](docs/huong-dan/05-di-chuyen-va-pin.md) | Bài luyện 3, 8 |
+| 6 | [Bị từ chối thì làm gì?](docs/huong-dan/06-bi-tu-choi.md) | Bài luyện 4, 9 |
+| 7 | [Vòng lặp và giao hàng](docs/huong-dan/07-giao-hang.md) | Bài luyện 5, 10 |
 | 8 | [Đội robot của bạn (OOP)](docs/huong-dan/08-doi-robot.md) | Bài luyện 6 |
 | 9 | [Sửa lỗi code](docs/huong-dan/09-sua-loi.md) | Bài luyện 7 |
 | 10 | [Xem đề, gợi ý và cách chấm điểm](docs/huong-dan/10-de-va-cham-diem.md) | — |
 
-Tra nhanh mọi lệnh: [Bảng công cụ](docs/BANG_CONG_CU.md). Trong game thì bấm **F1**.
+Tra nhanh mọi lệnh: [Bảng công cụ](docs/BANG_CONG_CU.md), mỗi lệnh có *làm gì*, *dùng khi nào* và *bài luyện để thử*. Trong game bấm **F1**: mỗi bài luyện có danh sách **các việc cần làm**, nhấn **H** để mở từng gợi ý.
 
 ## Phím tắt
 

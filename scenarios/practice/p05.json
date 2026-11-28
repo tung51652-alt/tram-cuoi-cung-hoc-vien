@@ -1,9 +1,8 @@
 {
   "id": "p05",
-  "level": "practice",
   "file": "p05_loop.py",
   "title": "Vòng lặp giao hàng",
-  "description": "Giao 3 kiện nhỏ. Bạn có thể đi từng kiện hoặc gom kiện cùng nơi nhận: cả hai đều đạt.",
+  "description": "Giao 3 kiện nhỏ tới đúng nơi nhận. Đi từng kiện hay gom kiện cùng nơi nhận đều đạt.",
   "locations": [
     {
       "name": "depot",
@@ -110,15 +109,27 @@
       "text": "Giao kiện 'Gạc' tới đúng nơi nhận"
     }
   ],
+  "steps": [
+    "Lấy danh sách kiện hàng.",
+    "Với mỗi kiện: tới chỗ kiện và nạp lên robot.",
+    "Tới nơi nhận của kiện đó và dỡ xuống."
+  ],
+  "hints": [
+    "Việc 1: ctx.packages(). Mỗi kiện có 'location' (đang ở) và 'destination' (phải tới).",
+    "Việc 2–3 lặp lại cho từng kiện: dùng for p in ctx.packages():",
+    "Trong vòng lặp: move_to → load → move_to → unload. Hướng dẫn: docs/huong-dan/07-giao-hang.md"
+  ],
+  "tools": [
+    "ctx.packages",
+    "ctx.load",
+    "ctx.unload",
+    "ctx.move_to"
+  ],
+  "level": "practice",
   "checks": [
     {
       "type": "all_goals",
       "text": "Hoàn thành mọi mục tiêu của bài"
     }
-  ],
-  "hints": [
-    "for p in ctx.packages(): ...",
-    "Mỗi kiện: move_to tới p[\"location\"], load, move_to tới p[\"destination\"], unload.",
-    "Muốn gom: load nhiều kiện cùng destination rồi đi một lần."
   ]
 }

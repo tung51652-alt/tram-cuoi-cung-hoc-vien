@@ -45,7 +45,9 @@ Bấm **Kiểm tra bài (F6)**:
 
 ![Kết quả bài luyện](../images/huong-dan/ket-qua-luyen.png)
 
-🎉 Xong bài đầu tiên! Chưa xong thì bấm **F1** rồi nhấn **H** để xem gợi ý.
+🎉 Xong bài đầu tiên! Chưa xong thì bấm **F1** để xem **các việc cần làm**, rồi nhấn **H** để mở từng gợi ý.
+
+![Đề và gợi ý](../images/huong-dan/de-va-goi-y.png)
 
 ## Thử thêm
 

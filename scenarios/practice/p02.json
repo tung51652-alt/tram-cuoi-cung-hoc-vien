@@ -1,6 +1,5 @@
 {
   "id": "p02",
-  "level": "practice",
   "file": "p02_observe.py",
   "title": "Đọc trạng thái",
   "description": "Cho BIP nói một câu có số pin hiện tại của BIP và tên địa điểm có trạm sạc.",
@@ -84,15 +83,28 @@
       "text": "Câu nói chứa số pin và tên trạm sạc"
     }
   ],
+  "steps": [
+    "Lấy số pin hiện tại của BIP.",
+    "Tìm tên địa điểm có trạm sạc.",
+    "Cho BIP nói một câu có cả hai thông tin đó."
+  ],
+  "hints": [
+    "Việc 1: ctx.robot('BIP') cho một dict, số pin ở khóa 'battery'.",
+    "Việc 2: ctx.find_location('charger') trả về tên trạm sạc.",
+    "Việc 3: ghép bằng f-string, ví dụ f'Pin {pin}, trạm {ten}', rồi ctx.say. Thử print(ctx.goals()) để xem mục tiêu."
+  ],
+  "tools": [
+    "ctx.robot",
+    "ctx.find_location",
+    "ctx.locations",
+    "ctx.goals",
+    "ctx.say"
+  ],
+  "level": "practice",
   "checks": [
     {
       "type": "all_goals",
       "text": "Hoàn thành mọi mục tiêu của bài"
     }
-  ],
-  "hints": [
-    "ctx.robot(\"BIP\") trả về dict; thử print nó.",
-    "Địa điểm có is_charger True là trạm sạc.",
-    "Ghép chuỗi bằng f-string: f\"Pin {pin}, trạm {ten}\"."
   ]
 }

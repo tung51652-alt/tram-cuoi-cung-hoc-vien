@@ -35,6 +35,6 @@ def run(ctx):
 | `ctx.charge(robot)` | Sạc đầy, phải đang đứng ở trạm sạc |
 | `ctx.go_charge(robot)` | Tự đi tới trạm sạc gần nhất rồi sạc |
 
-🧪 Luyện: **bài 3** (di chuyển).
+🧪 Luyện: **bài 3** (di chuyển), **bài 8** (pin và trạm sạc: dùng `route_cost`, `charge`).
 
 ➡️ Tiếp theo: [6. Bị từ chối thì làm gì?](06-bi-tu-choi.md)

@@ -1,9 +1,8 @@
 {
   "id": "p01",
-  "level": "practice",
   "file": "p01_wake.py",
   "title": "Đánh thức và chào",
-  "description": "BIP đang tắt. Kích hoạt BIP rồi cho BIP nói một câu chào.",
+  "description": "BIP đang tắt. Hãy bật BIP rồi cho BIP nói một câu.",
   "locations": [
     {
       "name": "dock_boot",
@@ -87,15 +86,24 @@
       "text": "BIP nói một câu"
     }
   ],
+  "steps": [
+    "Bật robot BIP.",
+    "Cho BIP nói một câu bất kỳ."
+  ],
+  "hints": [
+    "Việc 1 dùng ctx.activate, việc 2 dùng ctx.say. Xem cách gọi ở khung công cụ bên dưới.",
+    "Phải bật trước rồi mới nói được. Robot đang tắt sẽ từ chối với lý do inactive.",
+    "Hướng dẫn chi tiết: docs/huong-dan/03-bai-dau-tien.md"
+  ],
+  "tools": [
+    "ctx.activate",
+    "ctx.say"
+  ],
+  "level": "practice",
   "checks": [
     {
       "type": "all_goals",
       "text": "Hoàn thành mọi mục tiêu của bài"
     }
-  ],
-  "hints": [
-    "Dùng ctx.activate(\"BIP\").",
-    "Sau đó ctx.say(\"BIP\", \"...\").",
-    "Nói trước khi kích hoạt sẽ bị từ chối với reason \"inactive\"."
   ]
 }

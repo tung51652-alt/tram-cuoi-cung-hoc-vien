@@ -1,9 +1,8 @@
 {
   "id": "p07",
-  "level": "practice",
   "file": "p07_fix_error.py",
   "title": "Sửa lỗi",
-  "description": "File có sẵn hai lỗi. Chạy, đọc tên file/dòng/gợi ý, sửa rồi chạy lại cho tới khi BIP tới điểm tập kết.",
+  "description": "File có sẵn hai lỗi. Chạy, đọc tên file, số dòng và gợi ý, sửa rồi chạy lại cho tới khi BIP tới điểm tập kết.",
   "locations": [
     {
       "name": "dock_boot",
@@ -81,15 +80,25 @@
       "text": "BIP tới rally_point"
     }
   ],
+  "steps": [
+    "Bấm F5, đọc khung lỗi màu đỏ: file nào, dòng nào.",
+    "Sửa lỗi ở dòng đó, lưu, F5 lại.",
+    "Lặp lại tới khi BIP tới rally_point."
+  ],
+  "hints": [
+    "Lỗi 'đang là None' thường do hàm quên return.",
+    "Thứ tự tham số đúng là move_to(robot, nơi đến).",
+    "Hướng dẫn: docs/huong-dan/09-sua-loi.md"
+  ],
+  "tools": [
+    "ctx.move_to",
+    "ctx.locations"
+  ],
+  "level": "practice",
   "checks": [
     {
       "type": "all_goals",
       "text": "Hoàn thành mọi mục tiêu của bài"
     }
-  ],
-  "hints": [
-    "Đọc kỹ thứ tự tham số: move_to(robot_id, location).",
-    "Hàm helper phải return giá trị.",
-    "Mỗi lần chạy lại, thế giới được reset về ban đầu."
   ]
 }

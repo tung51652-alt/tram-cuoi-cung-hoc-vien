@@ -10,7 +10,7 @@ Khi code lỗi, game **không bị tắt**. Game hiện khung đỏ cho biết *
 2. **Mở đúng dòng đó** trong VS Code (bấm **Ctrl+G** rồi gõ số dòng).
 3. **Sửa, lưu, F5.** Lặp lại tới khi hết khung đỏ.
 
-Muốn xem đầy đủ, bấm **Kiểm tra bài (F6)**: game hiện cả **dòng code bị lỗi** và **gợi ý**.
+Muốn xem đầy đủ, bấm **Kiểm tra bài (F6)**: game hiện cả **dòng code bị lỗi**, **gợi ý** và toàn bộ dòng `print` của bạn.
 
 ## Lỗi hay gặp
 
